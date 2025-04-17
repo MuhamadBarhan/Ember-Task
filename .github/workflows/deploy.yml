@@ -24,12 +24,6 @@ jobs:
     - name: Build app
       run: npm run build --environment=production
 
-    - name: Ensure gh-pages branch exists
-      run: |
-        git fetch
-        git branch -r | grep 'origin/gh-pages' || git checkout --orphan gh-pages
-        git push origin gh-pages || echo "gh-pages branch already exists"
-
     - name: Deploy to GitHub Pages
       run: |
         npx ember github-pages:commit --message "Deploy to GitHub Pages"

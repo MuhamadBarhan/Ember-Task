@@ -4,4 +4,9 @@
     rather than JavaScript by default, when a TypeScript version of a given blueprint is available.
   */
   "isTypeScriptProject": false
+  {
+    "locationType": "hash",
+    "rootURL": "/Ember-Task/"
+  }
+  
 }

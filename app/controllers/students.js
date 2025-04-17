@@ -4,7 +4,6 @@ import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import { htmlSafe } from '@ember/template';
-import { computed } from '@ember/object';
 
 export default class StudentsController extends Controller {
 
