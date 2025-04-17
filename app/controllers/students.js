@@ -27,7 +27,6 @@ export default class StudentsController extends Controller {
   @tracked isCustomizeVisible = false;
   @tracked visibleColumns = ['reg', 'name', 'dept', 'skills', 'college']; 
   
-  @computed('filter.depts.[]')
   get isDeptChecked() {
     return (dept) => {
       return this.filter.depts.includes(dept);
