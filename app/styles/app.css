@@ -374,15 +374,17 @@ table tr td:not(:first-child) {
     width: 60px;
 }
 
-.main-row th:first-child input {
-margin-right: 1.2rem;
+.main-row td:first-child {
+    background-color: var(--table-bg);
 }
 
+.main-row th:first-child input {
+    margin-right: 1.2rem;
+}
 
 .main-row th:first-child::after,
 .main-row td:first-child::after,
-.nested-row-first-child::after
- {
+.nested-row-first-child::after {
     content: "";
     position: absolute;
     top: 0;
@@ -410,7 +412,7 @@ margin-right: 1.2rem;
 }
 
 .nested-row-first-child {
-    background-color: var(--table-header-bg);
+    background-color: var(--table-bg);
     position: sticky;
     top: 0;
     left: 0;
@@ -579,6 +581,7 @@ ul {
 ul li {
     margin: 0;
     padding-left: 0;
+    transition: transform 0.2s ease;
 }
 
 
@@ -744,5 +747,3 @@ ul li div {
     gap: 0.5rem;
     position: relative;
 }
-
-  

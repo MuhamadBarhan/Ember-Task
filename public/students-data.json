@@ -2,28 +2,23 @@
   "items": [
     {
       "key": "reg",
-      "label": "Reg No",
-      "width": 200
+      "label": "Reg No"
     },
     {
       "key": "name",
-      "label": "Name",
-      "width": 150
+      "label": "Name"
     },
     {
       "key": "dept",
-      "label": "Department",
-      "width": 150
+      "label": "Department"
     },
     {
       "key": "skills",
-      "label": "Skills",
-      "width": 150
+      "label": "Skills"
     },
     {
       "key": "clg",
-      "label": "College",
-      "width": 150
+      "label": "College"
     }
   ],
   "students": [

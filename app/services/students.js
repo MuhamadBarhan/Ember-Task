@@ -12,11 +12,11 @@ export default class StudentsService extends Service {
   }
 
   async loadStudents() {
-    let response = await fetch('/students_data.json');
-    let json = await response.json();
-    this.students = json.students;
+    let response = await fetch('/students-data.json');
+    let data = await response.json();
+    this.students = data.students;
     this.filteredStudents = this.students;
-    this.items = json.items;
+    this.items = data.items;
   }
 
   searchStudents(query, searchColumns = ['name', 'dept', 'clg']) {

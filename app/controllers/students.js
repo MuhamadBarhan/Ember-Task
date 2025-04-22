@@ -33,8 +33,8 @@ export default class StudentsController extends Controller {
 
   @tracked expandedRows = [];
 
-  @tracked items = [];
   @tracked DEFAULT_COLUMNS = [];
+  @tracked items = [];
 
   constructor() {
     super(...arguments);
@@ -131,7 +131,6 @@ export default class StudentsController extends Controller {
     resizer.addEventListener('mousedown', onMouseDown);
   }
 
-
   @action toggleFilter() {
     this.isFilterVisible = !this.isFilterVisible;
   }
@@ -194,7 +193,6 @@ export default class StudentsController extends Controller {
       };
     }
   }
-
 
   @action updateSkillsFilter(event) {
     let value = event.target.value;
