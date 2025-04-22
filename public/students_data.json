@@ -24,10 +24,6 @@
       "key": "clg",
       "label": "College",
       "width": 150
-    },
-    {
-      "key":"action",
-      "label":"Action"
     }
   ],
   "students": [
