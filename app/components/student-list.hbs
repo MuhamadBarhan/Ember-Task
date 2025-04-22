@@ -1,27 +1,45 @@
 <div class="table-container">
   <table id="table">
     <thead>
-      <tr>
+      <tr class="main-row">
         <th><input type="checkbox" {{on "change" @toggleSelectAll}} checked={{@selectAll}} /></th>
-         {{#if (includes @visibleColumns "reg")}}<th>Reg No</th>{{/if}}
-         {{#if (includes @visibleColumns "name")}}<th>Name <i class={{if @isAscending "bi bi-sort-alpha-down" "bi bi-sort-alpha-down-alt" }} {{on "click" @sortByName}}></i></th>{{/if}}
-         {{#if (includes @visibleColumns "dept")}}<th>Department</th>{{/if}}
-         {{#if (includes @visibleColumns "skills")}}<th>Skills</th>{{/if}}
-         {{#if (includes @visibleColumns "college")}}<th>College</th>{{/if}}
+        {{#each @items as |item|}}
+        {{#if (includes @visibleColumns item.key)}}
+        <th class="resizable" data-key={{item.key}} {{did-insert @makeResizable}}>
+          {{item.label}}
+          <i class="bi bi-arrow-down-up" {{on "click" (fn @sortByKey item.key)}}></i>
+          <span class="resizer"></span>
+          <i class="bi bi-three-dots-vertical" style="float: right; opacity:0.7; cursor:default;"></i>
+        </th>
+        {{/if}}
+        {{/each}}
         <th>Action</th>
       </tr>
     </thead>
+
     <tbody>
       {{#if (and @students (gt @students.length 0))}}
       <VerticalCollection @estimateHeight={{60}} @items={{@students}} @key="reg" @containerSelector=".table-container"
         as |student|>
-        <tr>
-          <td><input type="checkbox" /></td>
-           {{#if (includes @visibleColumns "reg")}}<td>{{student.reg}}</td>{{/if}}
-           {{#if (includes @visibleColumns "name")}}<td>{{student.name}}</td>{{/if}}
-           {{#if (includes @visibleColumns "dept")}}<td>{{student.dept}}</td>{{/if}}
-           {{#if (includes @visibleColumns "skills")}}<td>{{join-array student.skills ", "}}</td>{{/if}}
-           {{#if (includes @visibleColumns "college")}}<td>{{student.clg}}</td>{{/if}}
+        <tr data-reg={{student.reg}} class="main-row">
+
+          <td>
+            <input type="checkbox" />
+            <i class="bi bi-chevron-right chevron-icon {{if (includes @expandedRows student.reg) " rotate"}}" {{on "click" (fn @toggleRow student.reg)}}/>
+          </td>
+
+          {{#each @items as |item|}}
+          {{#if (includes @visibleColumns item.key)}}
+          <td {{on "click" (fn @toggleRow student.reg)}}>
+            {{#if (eq item.key "skills")}}
+            {{join-array student.skills ", "}}
+            {{else}}
+            {{get student item.key}}
+            {{/if}}
+          </td>
+          {{/if}}
+          {{/each}}
+
           <td>
             <button class="btn-ed edit" type="button" {{on "click" (fn @editRow student.reg)}}>
               <i class="fa-solid fa-pen-to-square"></i>
@@ -31,6 +49,18 @@
             </button>
           </td>
         </tr>
+
+        {{#if (includes @expandedRows student.reg)}}
+        <tr class="nested-row">
+          <td class="nested-row-first-child"></td>
+          <td colspan="7">
+            <div class="nested-content">
+              {{yield student}}
+            </div>
+          </td>
+        </tr>
+        {{/if}}
+
       </VerticalCollection>
       {{else}}
       <tr>
