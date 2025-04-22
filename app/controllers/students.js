@@ -33,9 +33,12 @@ export default class StudentsController extends Controller {
 
   @tracked expandedRows = [];
 
-  DEFAULT_COLUMNS = this.students.items;
+  constructor() {
+    super(...arguments);
 
-  @tracked items = this.loadSavedColumns();
+    this.DEFAULT_COLUMNS = this.students.items;
+    this.items = this.loadSavedColumns();
+  }
 
   loadSavedColumns() {
     try {
