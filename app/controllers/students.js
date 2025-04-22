@@ -35,10 +35,12 @@ export default class StudentsController extends Controller {
 
   constructor() {
     super(...arguments);
-
-    this.DEFAULT_COLUMNS = this.students.items;
-    this.items = this.loadSavedColumns();
+    this.students.loadStudents().then(() => {
+      this.DEFAULT_COLUMNS = this.students.items;
+      this.items = this.loadSavedColumns();
+    });
   }
+  
 
   loadSavedColumns() {
     try {
